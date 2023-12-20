@@ -382,7 +382,7 @@ function miniconda_deps() {
     conda activate tectoplot || exit_msg
 
     print_msg "Installing dependencies into new tectoplot environment..."
-    conda install python=3.9 git gmt gawk ghostscript -c conda-forge
+    conda install python=3.9 git gmt=6.1.1 gawk=5.1.0 ghostscript=9.53 -c conda-forge
 
     case "$OSTYPE" in
       linux*)
@@ -409,7 +409,7 @@ function clone_tectoplot() {
     if [[ -d ${tectoplot_folder_dir}/tectoplot/ ]]; then
       print_msg "Folder ./tectoplot already exists... not cloning"
     else
-      if git clone https://github.com/kyleedwardbradley/tectoplot.git ${tectoplot_folder_dir}/tectoplot; then
+      if git clone https://github.com/songzhenhe/tectoplot2021.git ${tectoplot_folder_dir}/tectoplot; then
         print_msg "tectoplot git repository cloned to ${tectoplot_folder_dir}/tectoplot"
       else
         print_msg "Could not clone tectoplot repository to ${tectoplot_folder_dir}/tectoplot"
