@@ -373,7 +373,7 @@ WGMFREEAIR_CPT_BYTES="538"
 
 ##### Sandwell 2019 Free Air gravity
 
-SANDWELL_SOURCESTRING="Sandwell 2019 Free Air gravity 32.1, SIO, NOAA, NGA, https://topex.ucsd.edu/pub/global_grav_1min/curv_32.1.nc"
+SANDWELL_SOURCESTRING="Sandwell 2019 Free Air gravity 32.1, SIO, NOAA, NGA,  https://topex.ucsd.edu/pub/global_grav_1min/curv_32.1.nc"
 SANDWELL_SHORT_SOURCESTRING="SW2019/32.1 - SIO, NOAA, NGA"
 
 SANDWELLDIR=$DATAROOT"Sandwell2019/"
