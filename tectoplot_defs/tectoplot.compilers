@@ -1,0 +1,5 @@
+if [[ ! -z $CONDA_DEFAULT_ENV ]]; then
+  [[ ! -z ${CC} ]] && CCOMPILER=$(which ${CC})
+  [[ ! -z ${CXX} ]] && CXXCOMPILER=$(which ${CXX})
+  [[ ! -z ${F90} ]] && F90COMPILER=$(which ${F90})
+fi

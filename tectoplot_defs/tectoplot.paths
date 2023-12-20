@@ -1,0 +1,615 @@
+# tectoplot
+# tectoplot_defs/tectoplot.paths
+# Copyright (c) 2021 Kyle Bradley, all rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+#    may be used to endorse or promote products derived from this software without
+#    specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# This file will be sourced by tectoplot. All assignments should be bash format.
+# (REQUIRES: $TECTOPLOTDIR, $DEFDIR).
+
+
+
+# Default compilers are overridden by entries in tectoplot_defs/tectoplot.compilers
+
+CCOMPILER="gcc"
+CXXCOMPILER="g++"
+F90COMPILER="gfortran"
+
+TECTOPLOT_COMPILERS_FILE="${DEFDIR}"tectoplot.compilers
+
+##### BASH SCRIPTS
+# Source the following scripts at startup
+BASHSCRIPTDIR=${TECTOPLOTDIR}"bashscripts/"
+
+IMAGE_SH=${BASHSCRIPTDIR}"image_processing.sh"
+TIME_SH=${BASHSCRIPTDIR}"time.sh"
+ARGS_CLEANUP_SH=${BASHSCRIPTDIR}"args_cleanup.sh"
+DOWNLOAD_DATASETS_SH=${BASHSCRIPTDIR}"download_datasets.sh"
+GEOSPATIAL_SH=${BASHSCRIPTDIR}"geospatial.sh"
+SEISMICITY_SH=${BASHSCRIPTDIR}"seismicity.sh"
+INFO_SH=${BASHSCRIPTDIR}"info.sh"
+DECLUSTER_GK=${BASHSCRIPTDIR}"gk.sh"
+REASENBERG_SH=${BASHSCRIPTDIR}"reasenberg.sh"
+CMTTOOLS=${BASHSCRIPTDIR}"cmt_tools.sh"
+SWATH=${BASHSCRIPTDIR}"swath.sh"
+MPROFILE_SH_SRC=${BASHSCRIPTDIR}"profile.sh"
+CMTSLURP=${BASHSCRIPTDIR}"cmt_tools.sh"
+FLOAT_TEXT=${BASHSCRIPTDIR}"textobj.sh"
+
+
+
+##### C/C++ CODES
+# Source the following scripts at startup
+CSCRIPTDIR=${TECTOPLOTDIR}"cscripts/"
+
+
+##### Location of Euler Pole / vector calculation scripts
+AWKSCRIPTDIR=${TECTOPLOTDIR}"awkscripts/"
+
+EULERVEC_AWK=$AWKSCRIPTDIR"eulervec_2pole_cart.awk"
+EULERVECLIST_AWK=$AWKSCRIPTDIR"eulervec_2pole_cart_list.awk"
+EULERADD_AWK=$AWKSCRIPTDIR"euleradd.awk"
+
+##### AWK 3D scripts
+
+REPLICATE_OBS=$AWKSCRIPTDIR"replicate_obj.sh"
+MAKE3D_SCRIPT=$BASHSCRIPTDIR"make3d.sh"
+
+##### 3D assets
+
+THREEDDIR=${TECTOPLOTDIR}"3d/"
+
+REPLICATE_POLY=$THREEDDIR"icosahedron.obj"
+REPLICATE_SPHERE=$THREEDDIR"sphere.obj"
+REPLICATE_SPHERE4=$THREEDDIR"sphere4.obj"
+# Sphere - many many faces
+FOCAL_SPHERE=$THREEDDIR"focsphere.obj"
+# Spherified cube - smaller
+FOCAL_SCUBE=$THREEDDIR"scube.obj"
+# Normalized cube - smallest
+FOCAL_NCUBE=$THREEDDIR"ncube.obj"
+
+FOCAL_MATERIAL=$THREEDDIR"focsphere.mtl"
+FOCAL_TEXTURE=$THREEDDIR"focaltexture.jpg"
+FOCAL_TEXTURE_DIM=$THREEDDIR"focaltexture_dim.jpg"
+
+VOLCANO_OBJ=$THREEDDIR"cone.obj"
+VOLCANO_MATERIAL=$THREEDDIR"volcanoes.mtl"
+
+ARROW_OBJ=$THREEDDIR"arrow8.obj"
+
+##### 3D fonts
+PLY_FLOAT_TEXT_FONT_DIR=${THREEDDIR}"newfont/flatfont/"
+
+##### FORTRAN code and executable path for Reasenberg declustering
+
+REASENBERG_DIR=${TECTOPLOTDIR}"reasenberg/"
+REASENBERG_SCRIPT=${REASENBERG_DIR}"cluster2000x_tectoplot.f"
+REASENBERG_EXEC=${REASENBERG_DIR}"reasenberg"
+
+##### DEFAULT_TMP is the directory that is created in the folder where tectoplot
+#     was called from, where produced data files are stored.
+DEFAULT_TMP="tempfiles_to_delete/"
+TMP=${DEFAULT_TMP}
+
+###### Names of files storing data sources information
+#
+SHORTSOURCES="short_datasources.txt"
+LONGSOURCES="datasources.txt"
+
+###### File where processing messages go if not to stdout
+INFO_MSG_NAME="info_messages.txt"
+
+###### This section defines and tracks temporary subfolders and important files
+#      that will usually be saved after tectoplot runs.
+
+F_TOPO="topo/"                        # DEM data
+F_MAPELEMENTS="mapelements/"          # Miscellaneous map elements (AOI box, etc)
+F_SEIS="seismicity/"                  # Earthquake hypocenters
+F_PLATES="plates/"                    # Plate polygons, Euler poles, etc.
+F_PROFILES="profiles/"                # Profiles and oblique perspective diagrams
+F_KIN="kinematics/"                   # Focal mechanism kinematics
+F_CMT="focal_mechanisms/"             # Focal mechanisms
+F_VOLC="volcanoes/"                   # Focal mechanisms
+F_GRAV="grav/"                        # Focal mechanisms
+F_SLAB="slab/"                        # Slab data
+F_GPS="gps/"                          # GPS velocity data
+F_3D="3d/"                            # 3D model data
+
+##### DATAROOT is the directory that contains all downloaded data directories.
+
+DATAROOT=$(head -n 1 $DEFDIR"tectoplot.dataroot")
+
+GMTCOLORS="$DEFDIR"tectoplot.gmtcolors
+
+TECTOPLOT_FORMATS=$DEFDIR"tectoplot.formats"
+TECTOPLOT_HEADERS=$DEFDIR"tectoplot.headers"
+
+CUSTOMREGIONS=$DEFDIR"tectoplot.customregions"
+
+SAVEDTOPODIR=${DATAROOT}"SavedTopography/"
+[[ -d ${DATAROOT} && ! -d ${SAVEDTOPODIR} ]] && mkdir -p ${SAVEDTOPODIR}
+
+##### OPENPROGRAM is the program to call from the command line to view PDF file
+OPENPROGRAM=$(head -n 1 $DEFDIR"tectoplot.pdfviewer")
+
+##### TEXTURE is the path to the texture executable
+TEXTUREDIR=${CSCRIPTDIR}"texture_shader/"
+TEXTURE=${TEXTUREDIR}"texture"
+TEXTURE_IMAGE=${TEXTUREDIR}"texture_image"
+TEXTURE_COMPILE_SCRIPT=${TEXTUREDIR}"compile_texture.sh"
+
+##### SVF is the path to the sky view factor executable
+SVF=${TEXTUREDIR}"svf"
+
+##### SHADOW is the path to the cast shadows executable
+SHADOW=${TEXTUREDIR}"shadow"
+
+##### Directory holding tectoplot default CPTs
+CPTDIR=$TECTOPLOTDIR"CPT/"
+
+##### List of GMT builtin CPT names
+GMTCPTS=${DEFDIR}"tectoplot.gmtcpts"
+
+##### Scraper scripts
+SCRAPERDIR=${BASHSCRIPTDIR}"data_scrapers/"
+
+SCRAPE_ISCEHB=$SCRAPERDIR"scrape_isc-ehb.sh"
+
+SCRAPE_GFZ=$SCRAPERDIR"scrape_gfz.sh"
+SCRAPE_GCMT=$SCRAPERDIR"scrape_gcmt.sh"
+SCRAPE_ISCFOC=$SCRAPERDIR"scrape_isc_focals.sh"
+SCRAPE_ISCSEIS=$SCRAPERDIR"scrape_isc_seismicity.sh"
+SCRAPE_ANSS=$SCRAPERDIR"scrape_anss_data.sh"
+#EXTRACT_ANSS=$SCRAPERDIR"extract_anss.sh"
+EXTRACT_ANSS_TILES=$SCRAPERDIR"extract_anss_tiles.sh"
+EXTRACT_ISC_TILES=$SCRAPERDIR"extract_isc_tiles.sh"
+MERGECATS=$SCRAPERDIR"merge_and_cull_catalogs.sh"
+
+##### Country ID codes
+COUNTRY_CODES=$DEFDIR"tectoplot.countrycentroids"
+
+##### Coastline data
+COASTS_SHORT_SOURCESTRING="GHSSG"
+COASTS_SOURCESTRING="Coastline data: Global Self-consistent, Hierarchical, High-resolution Geography Database, doi:10.1029/96JB00104"
+
+##### Path to various scripts in the tectoplot main folder
+
+
+#####
+SENT_DIR=$DATAROOT"Sentinel/"
+SENTINEL_SOURCESTRING="Sentinel-2 cloudless by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2016). Retrieved from https://tiles.maps.eox.at/wms?service=wms&request=getmap&version=1.1.1&layers=s2cloudless-2019"
+SENTINEL_SHORT_SOURCESTRING="Sentinel-2/EOX/2019"
+
+################################################################################
+#### Data sets and tools that we download and manage ourselves
+#### Set DATAROOT above and then run tectoplot -getdata to validate and download these to your hard disk
+
+GSFML_SOURCESTRING="GSFML; Wessel, P., K. J. Matthews, R. D. Müller, A. Mazzoni, J. M. Whittaker, R. Myhill, and M. T. Chandler (2015), Semiautomatic fracture zone tracking, Geochemistry, Geophysics, Geosystems, doi:10.1002/2015GC005853."
+GSFML_SHORT_SOURCESTRING="GSFML"
+
+GSFML_SOURCEURL="http://www.soest.hawaii.edu/PT/GSFML/SF/DATA/GSFML_SF.tbz"
+GSFML_ZIP_BYTES=255336
+GSFML_CHECK_BYTES=436440
+
+GSFMLDIR=${DATAROOT}"GSFML_SF/"
+GSFML_CHECK=${GSFMLDIR}"GMT/GSFML_SF_FZ_KM.gmt"
+
+GSFML_FZ1=${GSFMLDIR}"GMT/GSFML_SF_FZ_KM.gmt"
+GSFML_FZ2=${GSFMLDIR}"GMT/GSFML_SF_FZ_JW.gmt"
+GSFML_FZ3=${GSFMLDIR}"GMT/GSFML_SF_FZ_MC.gmt"
+GSFML_FZ4=${GSFMLDIR}"GMT/GSFML_SF_FZ_RM.gmt"
+
+
+#GSFML_SF_DZ_KM.gmt
+#GSFML_SF_ER_KM.gmt
+#GSFML_SF_FZLC_KM.gmt
+#GSFML_SF_PR_KM.gmt
+#GSFML_SF_UNCV_KM.gmt
+#GSFML_SF_VANOM_KM.gmt
+
+##### World City Data; Format: Lon,Lat,Name,Population
+
+CITIES_SOURCESTRING="City data from geonames (CC-BY)"
+CITIES_SHORT_SOURCESTRING="geonames"
+CITIESDIR=$DATAROOT"WorldCities/"
+CITIES500=$CITIESDIR"cities500.txt"
+CITIES=$CITIESDIR"geonames_cities_500.txt"
+CITIES_SOURCEURL="http://download.geonames.org/export/dump/cities500.zip"
+CITIES_ZIP_BYTES="10353983"
+CITIES500_BYTES="31818630"
+
+##### DEMs used for bathymetry/topography
+
+# Downloaded SRTM DEM
+
+SRTM_SOURCESTRING="Topography from Shuttle Radar Topography Mission (SRTM): doi:10.5066/F7PR7TFT"
+SRTM_SHORT_SOURCESTRING="SRTM"
+
+SRTM30DIR=$DATAROOT"SRTM30_plus/"
+SRTM30FILE=$SRTM30DIR"topo30.grd"
+SRTM30_SOURCEURL="ftp://topex.ucsd.edu/pub/srtm30_plus/topo30/topo30.grd"
+SRTM30_BYTES="1866759096"
+
+# Downloaded GEBCO DEMs
+
+GEBCO_SOURCESTRING="GEBCO Compilation Group (2020) GEBCO 2020 Grid (doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)"
+GEBCO_SHORT_SOURCESTRING="GEBCO"
+
+GEBCO20DIR=$DATAROOT"GEBCO20/"
+GEBCO20FILE=$GEBCO20DIR"GEBCO_2020.nc"
+GEBCO20_SOURCEURL="https://www.bodc.ac.uk/data/open_download/gebco/gebco_2020/zip/"
+GEBCO20_TID=$GEBCO20DIR"GEBCO_2020_TID.nc"
+GEBCO20_BYTES="7466008877"
+GEBCO20_ZIP_BYTES="4008688379"
+
+GEBCO1DIR=$DATAROOT"GEBCO_ONE/"
+GEBCO1FILE=$GEBCO1DIR"GRIDONE_2D.nc"
+GEBCO1_SOURCEURL="https://www.bodc.ac.uk/data/open_download/gebco/GEBCO_1MIN/zip/"
+GEBCO1_BYTES="466885748"
+GEBCO1_ZIP_BYTES="287717935"
+
+##### LITHO1.0 (Pasyanos et al. 2014)
+LITHO1DIR=$DATAROOT"LITHO1/"
+LITHO1DIR_2=$LITHO1DIR"LITHO1.0/litho_model"   # Can't end in a forward slash
+LITHO1MODELDIR=$LITHO1DIR"LITHO1.0/litho_model/"
+LITHO1PROGDIR=$LITHO1DIR"LITHO1.0/progs/"
+LITHO1FILE=$LITHO1DIR"LITHO1.0/litho_model/node9999.model"
+LITHO1_SOURCEURL="http://igppweb.ucsd.edu/~gabi/litho1/litho1.0.tar.gz"
+LITHO1_BYTES=12868
+LITHO1_ZIP_BYTES=12419118
+
+# Options for compiling the access_litho CPP program. Place the executable in the tectoplot dir which should have a path entry
+ACCESS_LITHO_BIN=$TECTOPLOTDIR
+
+LITHO1_PROG=${CSCRIPTDIR}"access_litho"
+
+##### Oceanic crustal age data (Seton et al. 2020)
+OC_AGE_DIR=$DATAROOT"OC_AGE/"
+OC_AGE=$OC_AGE_DIR"age.2020.1.GTS2012.1m.nc"
+OC_AGE_URL="https://www.earthbyte.org/webdav/ftp/earthbyte/agegrid/2020/Grids/age.2020.1.GTS2012.1m.nc"
+OC_AGE_BYTES="215659543"
+
+OC_AGE_CPT=$OC_AGE_DIR"age_2020.cpt"
+OC_AGE_CPT_URL="https://www.earthbyte.org/webdav/ftp/earthbyte/agegrid/2020/Grids/cpt/age_2020.cpt"
+OC_AGE_CPT_BYTES="1062"
+
+OC_AGE_SOURCESTRING="Oceanic crustal age from Seton et al., 2020, https://www.earthbyte.org/webdav/ftp/earthbyte/agegrid/2020/Grids/age.2020.1.GTS2012.1m.nc"
+OC_AGE_SHORT_SOURCESTRING="OCA"
+
+##### NASA Blue Marble 2004
+BLUEM_EAST="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_shallow_topo_east.tif"
+BLUEM_EAST_NAME="BlueMarble_topo_east.tif"
+BLUEM_WEST="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_shallow_topo_west.tif"
+BLUEM_WEST_NAME="BlueMarble_topo_west.tif"
+
+##### NASA Black Marble 2016 grayscale tiles
+BLACKM_A1="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_A1_geo_gray.tif"
+BLACKM_A1_NAME="BlackMarble_2016_A1_geo_gray.tif"
+BLACKM_B1="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_B1_geo_gray.tif"
+BLACKM_B1_NAME="BlackMarble_2016_B1_geo_gray.tif"
+BLACKM_C1="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_C1_geo_gray.tif"
+BLACKM_C1_NAME="BlackMarble_2016_C1_geo_gray.tif"
+BLACKM_D1="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_D1_geo_gray.tif"
+BLACKM_D1_NAME="BlackMarble_2016_D1_geo_gray.tif"
+BLACKM_A2="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_A2_geo_gray.tif"
+BLACKM_A2_NAME="BlackMarble_2016_A2_geo_gray.tif"
+BLACKM_B2="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_B2_geo_gray.tif"
+BLACKM_B2_NAME="BlackMarble_2016_B2_geo_gray.tif"
+BLACKM_C2="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_C2_geo_gray.tif"
+BLACKM_C2_NAME="BlackMarble_2016_C2_geo_gray.tif"
+BLACKM_D2="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_D2_geo_gray.tif"
+BLACKM_D2_NAME="BlackMarble_2016_D2_geo_gray.tif"
+
+
+##### Crustal magnetization data
+
+MAG_SOURCESTRING="Magnetic data from EMAG2_V2 (USGW), https://catalog.data.gov/dataset/emag2-earth-magnetic-anomaly-grid-2-arc-minute-resolution"
+MAG_SHORT_SOURCESTRING="EMAG2_V2"
+
+EMAG_V2_DIR=$DATAROOT"EMAG_V2/"
+EMAG_V2=$EMAG_V2_DIR"EMAG2_V2.tif"
+EMAG_V2_CPT=$EMAG_V2_DIR"EMAG2_V2.cpt"
+EMAG_V2_SOURCEURL="http://geomag.colorado.edu/images/EMAG2/EMAG2_V2.tif"
+EMAG_V2_BYTES="233388712"
+
+##### Gravity data
+
+GRAV_SOURCESTRING="World Gravity Model 2012: http://bgi.omp.obs-mip.fr/data-products/Grids-and-models/wgm2012"
+GRAV_SHORT_SOURCESTRING="WGM2012"
+
+WGMDIR=$DATAROOT"WGM2012/"
+
+WGMBOUGUER_ORIG=$WGMDIR"WGM2012_Bouguer_ponc_2min.grd"
+WGMBOUGUER=$WGMDIR"BG_resample.nc"
+WGMBOUGUER_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/WGM2012_Bouguer_ponc_2min.grd"
+WGMBOUGUER_BYTES="233410500"
+
+WGMBOUGUER_CPT=$WGMDIR"PALET_WGM_Bouguer_Global.cpt"
+WGMBOUGUER_CPT_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/PALET_WGM_Bouguer_Global.cpt"
+WGMBOUGUER_CPT_BYTES="841"
+
+WGMISOSTATIC_ORIG=$WGMDIR"WGM2012_Isostatic_ponc_2min.grd"
+WGMISOSTATIC=$WGMDIR"IS_resample.nc"
+WGMISOSTATIC_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/WGM2012_Isostatic_ponc_2min.grd"
+WGMISOSTATIC_BYTES="233410324"
+
+WGMISOSTATIC_CPT=$WGMDIR"PALET_WGM_Isostatic_Global.cpt"
+WGMISOSTATIC_CPT_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/PALET_WGM_Isostatic_Global.cpt"
+WGMISOSTATIC_CPT_BYTES="538"
+
+WGMFREEAIR_ORIG=$WGMDIR"WGM2012_Freeair_ponc_2min.grd"
+WGMFREEAIR=$WGMDIR"FA_resample.nc"
+WGMFREEAIR_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/WGM2012_Freeair_ponc_2min.grd"
+WGMFREEAIR_BYTES="233410292"
+
+WGMFREEAIR_CPT=$WGMDIR"PALET_WGM_Freeair_Global.cpt"
+WGMFREEAIR_CPT_SOURCEURL="https://cdn.obs-mip.fr/bgi/wgm_grid/data/PALET_WGM_Freeair_Global.cpt"
+WGMFREEAIR_CPT_BYTES="538"
+
+
+##### Sandwell 2019 Free Air gravity
+
+SANDWELL_SOURCESTRING="Sandwell 2019 Free Air gravity 30.1, SIO, NOAA, NGA, https://topex.ucsd.edu/pub/global_grav_1min/curv_30.1.nc"
+SANDWELL_SHORT_SOURCESTRING="SW2019/30.1 - SIO, NOAA, NGA"
+
+SANDWELLDIR=$DATAROOT"Sandwell2019/"
+SANDWELLFREEAIR=$SANDWELLDIR"grav_30.1.nc"
+SANDWELL2019_SOURCEURL="https://topex.ucsd.edu/pub/global_grav_1min/grav_30.1.nc"
+SANDWELL2019_bytes="829690416"
+
+SANDWELLFREEAIR_CURV=$SANDWELLDIR"curv_30.1.nc"
+SANDWELL2019_CURV_SOURCEURL="https://topex.ucsd.edu/pub/global_grav_1min/curv_30.1.nc"
+SANDWELL2019_CURV_bytes="829690416"
+
+
+##### EarthByte Data provided with GPlates
+
+EARTHBYTEDIR=$DATAROOT"EarthByte/"
+
+EARTHBYTE_ISOCHRONS_SOURCEURL="https://www.earthbyte.org/webdav/ftp/earthbyte/GPlates/SampleData_GPlates2.2/Individual/FeatureCollections/Isochrons.zip"
+EARTHBYTE_ISOCHRONS_SHP_BYTES=310048
+EARTHBYTE_ISOCHRONS_ZIP_BYTES=714027
+
+EARTHBYTE_ISOCHRONS_SHP=${EARTHBYTEDIR}"Isochrons/Shapefile/Muller_etal_AREPS_2016_Isochrons.shp"
+EARTHBYTE_ISOCHRONS_GMT=${EARTHBYTEDIR}"Isochrons/Shapefile/Muller_etal_AREPS_2016_Isochrons.gmt"
+
+EARTHBYTE_ISOCHRONS_SOURCESTRING="Müller, R.D., Seton, M., Zahirovic, S., Williams, S.E., Matthews, K.J., Wright, N.M., Shephard, G.E., Maloney, K.T., Barnett-Moore, N., Hosseinpour, M., Bower, D.J. & Cannon, J. 2016. Ocean Basin Evolution and Global-Scale Plate Reorganization Events Since Pangea Breakup, Annual Review of Earth and Planetary Sciences, vol. 44, pp. 107 . DOI: 10.1146/annurev-earth-060115-012211."
+EARTHBYTE_ISOCHRONS_SHORT_SOURCESTRING="EarthByte"
+
+
+EARTHBYTE_HOTSPOTS_SOURCEURL="https://www.earthbyte.org/webdav/ftp/earthbyte/GPlates/SampleData_GPlates2.2/Individual/FeatureCollections/Hotspots.zip"
+EARTHBYTE_HOTSPOTS_SHP_BYTES=2004
+EARTHBYTE_HOTSPOTS_ZIP_BYTES=31660
+
+EARTHBYTE_HOTSPOTS_SHP=${EARTHBYTEDIR}"Hotspots/SHP/Hotspots_Compilation_Whittaker_etal.shp"
+EARTHBYTE_HOTSPOTS_GMT=${EARTHBYTEDIR}"Hotspots/SHP/Hotspots_Compilation_Whittaker_etal.gmt"
+
+EARTHBYTE_HOTSPOTS_SOURCESTRING="Whittaker, J., Afonso, J., Masterton, S., Müller, R., Wessel, P., Williams, S., and Seton, M., 2015, Long-term interaction between mid-ocean ridges and mantle plumes: Nature Geoscience, v. 8, no. 6, p. 479-483, doi: 10.1038/ngeo2437"
+EARTHBYTE_HOTSPOTS_SHORT_SOURCESTRING="EarthByte"
+
+
+MULLERDIR=${DATAROOT}"Muller2016/"
+MULLER_OCAGE=${MULLERDIR}"Muller_etal_2019_Tectonics_v2.0_PresentDay_AgeGrid.nc"
+
+
+
+
+##### Global Curie Depth Map
+GCDM_SOURCESTRING="Global Curie Depth Map, Li et al., 2017, doi:10.1038/srep45129"
+GCDM_SHORT_SOURCESTRING="GCDM"
+
+GCDMDIR=$DATAROOT"GCDM/"
+GCDMDATA=$GCDMDIR"GCDM.nc"
+GCDMDATA_ORIG=$GCDMDIR"gcdm.txt"
+GCDM_SOURCEURL="https://static-content.springer.com/esm/art%3A10.1038%2Fsrep45129/MediaObjects/41598_2017_BFsrep45129_MOESM71_ESM.txt"
+GCDM_BYTES="123810173"
+
+##### GMT Day and Night Imagery
+
+GMT_EARTHDIR=$DATAROOT"GMTEARTH/"
+
+GMT_EARTHNIGHT=$GMT_EARTHDIR"gmt_night_30s.tif"
+GMT_EARTHNIGHT_SOURCEURL="https://oceania.generic-mapping-tools.org/server/earth/earth_night/earth_night_30s_p.tif"
+GMT_EARTHNIGHT_BYTES="412737979"
+
+GMT_EARTHDAY=$GMT_EARTHDIR"gmt_day_30s.tif"
+GMT_EARTHDAY_SOURCEURL="https://oceania.generic-mapping-tools.org/server/earth/earth_day/earth_day_30s_p.tif"
+GMT_EARTHDAY_BYTES="229508530"
+
+##### SLAB2.0
+SLAB2_SOURCESTRING="Slab geometries from Slab 2.0, Hayes et al. 2018, doi:10.1126/science.aat4723"
+SLAB2_SHORT_SOURCESTRING="SLAB2"
+
+SLAB2_DATADIR=$DATAROOT"SLAB2/"
+SLAB2_SOURCEURL="https://www.sciencebase.gov/catalog/file/get/5aa1b00ee4b0b1c392e86467"
+SLAB2_CHECKFILE=$SLAB2_DATADIR"Slab2Distribute_Mar2018.tar.gz"
+SLAB2_CHECK_BYTES="140213438"
+SLAB2_ZIP_BYTES="93730583"
+
+SLAB2DIR=$SLAB2_DATADIR"Slab2Distribute_Mar2018/"
+SLAB2_CLIPDIR=$SLAB2DIR"Slab2Clips/"
+SLAB2_CONTOURDIR=$SLAB2DIR"Slab2_CONTOURS/"
+SLAB2_GRIDDIR=$SLAB2DIR
+
+### Additional directories where we store cached DEM data or custom DEMs
+# We will store 1°x1° tiles of GMRT and manage their re-download as needed
+
+GMRTDIR=$DATAROOT"GMRT/"
+BESTDIR=$DATAROOT"BEST_TOPO/"
+CUSTOMEXTDIR=$DATAROOT"customDEM/"
+EARTHRELIEFDIR=$DATAROOT"EARTHRELIEF/"
+
+EARTHRELIEFPREFIX="@earth_relief_"
+
+EARTHRELIEF_SHORT_SOURCESTRING="GMT/EarthRelief"
+EARTHRELIEF_SOURCESTRING="EarthRelief topo retrieved from GMT Oceania server (https://oceania.generic-mapping-tools.org)"
+
+GMRT_SHORT_SOURCESTRING="GMRT"
+GMRT_SOURCESTRING="Global Multi-Resolution Topography (https://www.gmrt.org/services/gridserverinfo.php#!/services/getGMRTGrid)"
+
+
+##### Focal mechanism data
+
+FOCALDIR=$DATAROOT"CombinedFocals/"
+FOCALCATALOG=$FOCALDIR"focals.cat"
+
+GFZDIR=$DATAROOT"GFZ/"
+GFZCATALOG=$GFZDIR"gfz_extract.cat"
+
+GCMTDIR=$DATAROOT"GCMT/"
+GCMTCATALOG=$GCMTDIR"gcmt_extract.cat"
+
+# Change this to switch the server that we scrape data from
+#ISC_MIRROR="http://www.isc.ac.uk"
+ISC_MIRROR="http://isc-mirror.iris.washington.edu"
+
+ISCDIR=$DATAROOT"ISC/"
+ISCCATALOG=$ISCDIR"isc_extract.cat"
+CLEANISC=$ISCDIR"isc_extract_nogcmt.cat"
+
+GCMT_SOURCESTRING="Focal mechanisms from GCMT, Ekström et al. 2012, doi:10.1016/j.pepi.2012.04.002"
+GCMT_SHORT_SOURCESTRING="GCMT"
+ISC_SOURCESTRING="Focal mechanisms from ISC catalog, http://www.isc.ac.uk/iscbulletin/search/fmechanisms/"
+ISC_SHORT_SOURCESTRING="ISC"
+GFZ_SOURCESTRING="Focal mechanisms from GFZ GEOFON catalog, https://geofon.gfz-potsdam.de/eqinfo/list.php"
+GFZ_SHORT_SOURCESTRING="GFZ"
+
+#ISC_ORIGIN=$DATAROOT"ISC/isc_nogcmt_origin.txt"
+#ISC_CENTROID=$DATAROOT"ISC/isc_nogcmt_centroid.txt"
+
+##### Smithsonian Pleistocene volcanoes database
+
+GVP_PLEISTOCENE_SOURCEURL="https://volcano.si.edu/database/list_volcano_pleistocene_excel.cfm"
+GVP_HOLOCENE_SOURCEURL="https://volcano.si.edu/database/list_volcano_holocene_excel.cfm"
+
+# Output from Excel to tab delimited file, 2 header lines at start.
+GVP_PLEISTOCENE_TABTXT="GVP_Volcano_List_Holocene.txt"
+GVP_HOLOCENE_TABTXT="GVP_Volcano_List_Holocene.txt"
+
+VOLC_SOURCESTRING="Volcano data from Smithsonian GVP (https://volcano.si.edu/), Whelley et al. 2015 doi:10.1007/s00445-014-0893-8"
+VOLC_SHORT_SOURCESTRING="GVP"
+
+SMITHVOLC=$DATAROOT"Smithsonian/GVP_4.8.8_lat_lon_elev.txt"
+WHELLEYVOLC=$DATAROOT"Smithsonian/Whelley_2015_volcanoes.txt"
+JAPANVOLC=$DATAROOT"Smithsonian/japan_volcanoes.lonlatname"
+
+##### Seismicity
+
+ANSS_EQ_SOURCESTRING="Earthquakes: USGS/ANSS, https://earthquake.usgs.gov/earthquakes/search/"
+ANSS_EQ_SHORT_SOURCESTRING="ANSS"
+
+ANSSDIR=$DATAROOT"ANSS/"
+ANSSTILEDIR=${ANSSDIR}"Tiles"
+#ANSS_EQ_CATALOG=${ANSSDIR}"anss.cat"
+
+# mirror:
+ISC_MIRROR="http://isc-mirror.iris.washington.edu"
+
+ISC_EQS_DIR=$DATAROOT"ISC_SEIS/"
+ISCTILEDIR=${ISC_EQS_DIR}"Tiles"
+
+ISC_EQ_CATALOG=$ISC_EQS_DIR"isc_seis.cat"
+ISC_EQ_SOURCESTRING="ISC earthquake catalog, http://www.isc.ac.uk/iscbulletin/search/"
+ISC_EQ_SHORT_SOURCESTRING="ISC"
+
+ISCEHBDIR=$DATAROOT"ISC-EHB/"
+ISCEHB_DATA=${ISCEHBDIR}ehb_events.cat
+ISCEHB_EQ_SOURCESTRING="ISC-EHB earthquake catalog, http://www.isc.ac.uk/isc-ehb/"
+ISCEHB_EQ_SHORT_SOURCESTRING="ISC-EHB"
+
+################################################################################
+# Earthquake catalog
+
+EQCATALOG=$ANSS_EQ_CATALOG
+EQ_SOURCESTRING=$ANSS_EQ_SOURCESTRING
+EQ_SHORT_SOURCESTRING=$ANSS_EQ_SHORT_SOURCESTRING
+
+##### GEM Faults
+
+FAULTS_SOURCESTRING="GEM Active Faults https://github.com/GEMScienceTools/gem-global-active-faults"
+FAULTS_SHORT_SOURCESTRING="GEM"
+
+GEMFAULTS=$DATAROOT"GEMActiveFaults/gem-global-active-faults/gmt/gem_active_faults_harmonized.gmt"
+GEMFAULTS_SOURCEURL="https://raw.githubusercontent.com/cossatot/gem-global-active-faults/master/gmt/gem_active_faults_harmonized.gmt"
+
+##### SRCMOD slip distribution folder
+SRCMOD_SOURCESTRING="SRCMOD, http://equake-rc.info/srcmod/"
+SRCMOD_SHORT_SOURCESTRING="SRCMOD"
+
+SRCMODFSPFOLDER=$DATAROOT"SRCMOD/srcmod2020-03-23FSP/"
+SRCMODFSPLOCATIONS=$DATAROOT"SRCMOD/srcmod2020-03-23FSP/FSPlocations.txt"
+
+##### Plate models
+
+PLATEMODELSDIR=$TECTOPLOTDIR"platemodels/"
+
+# MORVEL56-NNR (Argus et al., 2011)
+MORVEL_SOURCESTRING="MORVEL56 NNR plate motions, Argus et al., 2011 doi:10.1111/j.1365-246X.2009.04491.x"
+MORVEL_SHORT_SOURCESTRING="MORVEL56"
+
+MORVELSRC="MORVEL56"
+MORVELPLATES=$PLATEMODELSDIR"MORVEL56/MORVEL56boundaries_fixed.dat"
+MORVELPLATEEDGES=$PLATEMODELSDIR"MORVEL56/MORVEL56boundaries.gmt"
+MORVELPOLES=$PLATEMODELSDIR"MORVEL56/MORVEL56NNR_poles.txt"
+MORVELMIDPOINTS=$PLATEMODELSDIR"MORVEL56/MORVEL56_midpoints.txt"
+
+# Kreemer et al. , 2014
+GSRM_SOURCESTRING="Plate motions from Kreemer et al. 2014, doi:10.1002/2014GC005407"
+GSRM_SHORT_SOURCESTRING="GSRM"
+
+KREEMERSRC="GSRM2014"
+GSRMDATA=$PLATEMODELSDIR"GSRM/GSRM.dat"
+KREEMERPLATES=$PLATEMODELSDIR"GSRM/kreemer_plate_polygons_fixed.dat"
+# kreemer_plate_polygons_fixed.dat has had polar cap and dateline plates split
+#KREEMERPROC="${MORVELPLATES}.proc" # (Not used?)
+KREEMERPOLES=$PLATEMODELSDIR"GSRM/Kreemer_Poles.txt"
+KREEMERMIDPOINTS=$PLATEMODELSDIR"GSRM/Kreemer_midpoints.txt"
+KREEMERPLATEEDGES=$PLATEMODELSDIR"GSRM/plate_polygons.gmt"
+
+# GBM (Graham et al., 2018)
+GBM_SOURCESTRING="Plate motions from Graham et al. 2018, doi:10.1029/2017GC007391"
+GBM_SHORT_SOURCESTRING="GBM"
+
+GBMSRC="GBM2018"
+# The block.180_fixed.dat has had polar cap and dateline plates split and fixed
+GBMPLATES=$PLATEMODELSDIR"GBM/block.180_fixed.dat"
+GBMPOLES=$PLATEMODELSDIR"GBM/block.180.poles.dat"
+GBMMIDPOINTS=$PLATEMODELSDIR"GBM/GBM_midpoints.txt"
+GBMPLATEEDGES=$PLATEMODELSDIR"GBM/block.180.dat"
+
+# Communication cables data
+CABLES=$DATAROOT"gregs_cable_map_v1.58/Cables.gmt"
+
+##### GPS velocities
+
+GPS_SOURCESTRING="GPS velocities from Kreemer et al. 2014 doi:10.1002/2014GC005407"
+GPS_SHORT_SOURCESTRING="GPS-GSRM"
+
+GPSDIR=$PLATEMODELSDIR"GSRM"
+
+# GPS will only plot if the REFPLATE exists in the Kreemer dataset with the same ID code...
+GPS_FILE=`echo $GPSDIR"/GPS_ITRF08.gmt"`

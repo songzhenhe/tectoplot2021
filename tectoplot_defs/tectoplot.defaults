@@ -1,0 +1,601 @@
+# tectoplot
+# tectoplot_defs/tectoplot.defaults
+# Copyright (c) 2021 Kyle Bradley, all rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+#    may be used to endorse or promote products derived from this software without
+#    specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# This file will be sourced by the main tectoplot script to load various default values.
+# Assignments should be in bash format
+
+DEM_MINLON="unset"
+
+PAGE_COLOR="white"      # Color of the paper background
+
+EQ_REGION_WIDTH=2       # Width/height of default region surrounding -r eq
+CULL_EQ_CATALOGS=1      # 1 = cull catalogs by default; 0 = don't
+
+PLY_FIB_KM=250          # Distance in km between global Fibonacci spiral points, PLY output
+PLY_VEXAG=1             # Vertical exaggeration of seismicity
+PLY_VEXAG_TOPO=1        # Vertical exaggeration of topography
+PLY_POLYMAG=6         # Minimum magnitude of earthquakes drawn as polygons instead of points
+PLY_POLYMAG_POWER=2     # Radius of polymag eqs is multiplied by magnitude to this power
+PLY_POLYSCALE=0.001     # Scale factor (radius of M=1) for earthquake polygons 1 = 100km
+PLY_VOLCSCALE=0.05      # Scale factor for volcano objects
+PLY_SCALE=1             # Scale factor applied to all scaleable objects
+PLY_SIDEBOXDEPTH=10     # Depth of PLY sidebox, in km positive down
+PLY_SIDEBOXCOLOR="155/155/155"    # RGB of sidebox color, or GMT color?
+PLY_SIDEBOXTEXT=1       # 1 to plot X/Y labels on sidebox, 0 to not plot
+PLY_SIDEBOXINTERVAL_SPECIFY=0   # Use specified vert/horz intervals? 1=yes, 2=no
+PLY_SIDEBOXINTERVAL_VERT=5  # Spacing of vertical unit text, km
+PLY_SIDEBOXINTERVAL_HORZ=1  # Spacing of horizontal unit text, degrees
+PLY_PT_OPACITY=1        # Opacity of seismicity point data
+
+PLY_GPSSCALE=0.25       # Scale factor for GPS velocity arrows, Y dimension
+PLY_GPSFATSCALE=3      # Scale factor for GPS velocity arrows, X+Z dimensions (radial)
+PLY_GPS_VELSCALE=0.1
+
+#PLY_DEMOBJ="dem"        # Name of the DEM mesh (e.g. dem.obj)
+
+PLY_ZOFFSET=0           # Vertical offset (positive away from Earth center) in km of mesh
+PLY_MTLNAME="ColoredIntensity"    # Name of material for DEM mesh OBJ
+PLY_TEXNAME="ColoredIntensity_texture.png"
+PLY_ALPHACUT=20         # Grayscale (white) cutoff
+PLY_OCEANDEPTH=0        # Depth of the ocean layer (km, positive down)
+
+PLY_TEXTCODE="basetext"
+PLY_TEXTFONTCOLOR="white"
+PLY_BACKGROUND_COLOR="black"
+
+# Default labels for profile axes
+
+PROFILE_X_LABEL="Distance (km)"
+PROFILE_Y_LABEL="Distance (km)"
+PROFILE_Z_LABEL="Distance (km)"
+
+DEM_LATBUFFER=0.0       # Extra width of DEM vs AOI (Degrees)
+DEM_LONBUFFER=0.0       # Extra height of DEM vs AOI (Degrees)
+
+PLOT_SECTIONS_PROFILEFLAG=1
+
+OTO_METHOD="change_h"    # choose from change_z and change_h
+
+DECLUSTER_MINSIZE=1
+DECLUSTER_REMOVE=0
+DECLUSTER_METHOD="gk"    # choose from gk, gruenthal, urhammer, rb
+
+PERSPECTIVE_IM_RES=300   # Render resolution of perspective top grid
+
+SLAB2_BUFFER=0        # Distance above slab2 which still counts as below for -cshallow
+
+CMTSLAB2DIP=10          # Maximum deviation of nodal plane dip from Slab2 dip
+CMTSLAB2STR=20          # Maximum deviation of nodal plane strike from Slab2 strike
+CMTSLAB2VERT=10         # maximum vertical distance from slab2 to qualify as interface event
+
+SSRESC="0.05d"
+
+COUNTRIESCPT=wysiwyg
+
+SLAB2STR="c"
+
+LASTDAYNUM=7
+
+SENTINEL_DOWNSAMPLE=1   # If 1, downsample DEM to match Sentinel; else, upsample Sentinel to match DEM
+
+SENTINEL_RECOLOR_R=24
+SENTINEL_RECOLOR_G=44
+SENTINEL_RECOLOR_B=77
+
+EQ_CATALOG_TYPE+=("ANSS")
+COUNTRIES_TRANS=0
+
+STARTTIME="0000-01-01T00:00:00"
+ENDTIME="2500-01-01T00:00:00"
+
+CLIP_POLY_PEN="-W0p,black"
+
+OBBAXISTYPE="plain"
+
+#### Data download options
+DELETEZIPFLAG=0
+
+
+#### Topo visualization options
+
+TPCT_MIN=2
+TPCT_MAX=98
+
+SENTINEL_GAMMA=0.7
+
+DEFAULT_TOPOCTRL="ms"   # Default topography visualization string
+UNI_FACT=0.7
+SKYVIEW_FACT=0.7
+MULTIHS_FACT=0.7
+TS_FACT=0.7
+SLOPE_FACT=0.7
+TRI_FACT=0.7
+IMAGE_FACT=1
+SHADOW_ALPHA=0.5
+
+topocolorflag=1
+
+SLOPEMAXDEG=5
+SLOPEMINDEG=0
+
+NUM_SVF_ANGLES=8  # Sky view factor number of look angles
+DEM_ALPHA=0.5       # Alpha of color stretch
+SHADOW_ALPHA=0.5      # Alpha of cast shadows
+
+################################################################################
+# Not sure what these variables do currently or whether they are used...
+ILLUM="-I+d"                # Default option for shaded relief (not used now?)
+
+################################################################################
+# Control options
+CLEANUP_FILES=1             # If set to 1, delete files on exit that are marked for cleanup
+HIGHLIGHT_CUSTOM_CMT=1      # If set to 1, draw custom CMT with a wider border
+GRID_PRINT_RES=""           # Set to -Exxx where xxx is a dpi to control output resolution of grdimage
+
+################################################################################
+# GMT options
+VERBOSE="-Ve"               # GMT verbosity flag. Choose -Ve, -Vn, etc.
+KEEPOPEN=""                 # keep open the PS file at end of script or not
+DATE_FORMAT="-u"
+
+# Page layout and element formatting options
+PLOTFILE="map.ps"            # name of PS file bearing plot data
+PLOTSHIFTX="1i"              # GMT shift of origin, X direction
+PLOTSHIFTY="c"               # GMT shift of origin, Y direction
+PLOTTITLE=""                 # title (default will be replaced with no title)
+PSSCALE=1                    # fraction of PSSIZE to plot at (1=no scaling)
+PSSIZE=7                     # size of square page, inches
+PSSIZE_DEFAULT=7             # size of square page, inches
+MARGIN=0.5                   # page margin, inches
+ARROWFMT="0.03/0.12/0.06"    # format for velocity arrows, GMT 4 style
+GRIDCALL="WESN"              # GMT axes code (-Bxxxx)
+GRIDLINESON=0                # Gridlines on (0=off)
+VELSCALE=0.01                # Scale factor for velocities
+PVHEAD=0.1i                  # Head size for velocity vectors
+PVFORMAT="0.03/0.06/0.06"    # Experimental head size for plate relative V
+
+# GIS line options
+USERLINECOLOR=black           # GIS line data file, line color
+USERLINEWIDTH="0.5p"          # GIS line data file, line width
+
+
+# Miscellaneous options that haven't been placed in their proper locations in this file
+
+FILLGRIDNANS=1              # Set to 1 to fill clipped DEM NaN with nearest non-NaN values
+MEXP_TRIPLE="6.0 7.0 8.0"
+
+# The allowable intervals to be selected for plot axes
+INTERVALS_STRING="0.00001 0.0001 0.001 0.01 0.02 0.05 0.1 0.2 0.5 1 2 5 10 100 200 500 1000 2000 5000 10000 20000 50000 100000 200000 500000"
+
+SCALECMD=""
+
+################################################################################
+##### CPT options
+ZEROHINGE=1             # Set to 1 to enforce hinge on topo CPT
+CPTHINGE=0                  # Value of the hinge (the split in color tone, set in some default CPTs)
+
+# Rescaling CPT settings
+# If = 0, use original CPT file limits
+# If = 1, use range within AOI
+
+GRAV_RESCALE=0
+MAG_RESCALE=0
+
+################################################################################
+# File export format options
+
+GEOTIFFRES=720               # Resolution (dpi) of output GeoTiff if --geotiff is selected
+KMLRES=600                   # Resolution (dpi) of output KML image if --geotiff is selected
+
+################################################################################
+# Oblique view of DEM options
+
+OBLIQUEAZ=135                # Azimuth of perspective view of topography, exported to oblique.pdf in temp folder
+OBLIQUEINC=25                # Inclination of perspective matching to above
+OBLIQUE_VEXAG=1              # Vertical exaggeration for oblique view of topography
+OBLIQUERES=300
+
+################################################################################
+# Oblique perspective profile diagram options
+
+PERSPECTIVE_AZ=165           # Azimuth of perspective view of profiles, subplot pieces exported in PDFs in temp folder
+PERSPECTIVE_INC=15           # Inclination matching to above
+PERSPECTIVE_RES=1            # resolution (in km, no units) for swath topo profile grid
+PERSPECTIVE_EXAG=2           # vertical exaggeration of topo, plot space only
+PERSPECTIVE_TOPO_HALF=""     # Set to "+l" (-msl) (or less obviously "+r") to restrict profiling to one side or the other (grdtrack)
+
+################################################################################
+# Regular profile options
+
+PROFILE_WIDTH_IN="7i"        # Width of profile
+PROFILE_HEIGHT_IN="2i"       # Height of profile
+PROFILE_DEPTH_IN="2i"        # Depth of profile (for box plot): generally recalculated to match HEIGHT
+WFACT=1                      # Factor which is multiplied onto PROFILE_DEPTH_IN
+PROFILE_X="0"                # X axis offset of the profile relative to the current plot origin (usually lower left corner)
+PROFILE_Y="-3i"              # Y axis offset of the profile relative to the current plot origin (usually lower left corner)
+BUFFER_PROFILES=1            # Set to 1 to buffer profiles for plotting
+BUFFER_WIDTH_FACTOR=0.01     # Percent extra
+
+SWATHTRANS=50                # Percent transparency for swath profile envelopes
+SWATHLINE_WIDTH=0.25p        # Width of q50 (median) swath line
+PROFILE_FONT_LABEL_SIZE=12p  # Font size of profile labels
+PROFILE_TRACK_WIDTH=1.5p     # Width of profile line drawn onto the map
+SWATH_USE_SIGNED_D_FOR_MULTIPOINT_PROFILES=0    # Set to 1 if we use signed distance for profiles
+
+SPROF_MAXELEV=5              # Maximum elevation of SPROF profile data. Set to a number in km (5) or to auto
+SPROF_MINELEV=-50            # Maximum elevation of SPROF profile data. Set to a number in km (5) or to auto
+SPROF_MAXELEV_AUTO=5         # Maximum elevation of SPROF (auto adjust range can exeed) activated with -profauto
+SPROF_MINELEV_AUTO=-50       # Minimum elevation of SPROF (auto adjust range can exeed) activated with -profauto
+SPROF_RES="1k"               # Along-profile sampling resolution
+ALIGNXY_FILE="null"
+
+################################################################################
+# Legend options
+
+AUTHOR_YSHIFT=0
+AUTHOR_XSHIFT=0
+LEGENDX="0"                  # Offset from left side of page, inches
+LEGEND_WIDTH="2i"            # Width of the legend, inches
+
+################################################################################
+# Command text options
+
+COMMAND_FONTSIZE=10p
+COMMAND_FONT="Helvetica"
+COMMAND_FONTCOLOR="black"
+
+################################################################################
+# AOI / reference point options
+
+MAXLAT=-4.5                  # default region, Solomon Islands
+MAXLON=162                   # default region, Solomon Islands
+MINLAT=-12                   # default region, Solomon Islands
+MINLON=154                   # default region, Solomon Islands
+REFPTLAT=-6                  # reference point latitude
+REFPTLON=160                 # reference point longitude
+
+################################################################################
+##### Slab2 options
+
+SLAB2GRID_TRANS=20
+
+################################################################################
+##### Cities options
+
+CITIES_SYMBOL="s"
+CITIES_SYMBOL_SIZE="0.05i"
+CITIES_SYMBOL_LINEWIDTH="0.25p"
+CITIES_SYMBOL_LINECOLOR="black"
+CITIES_SYMBOL_FILLCOLOR="white"
+CITIES_MINPOP=5000
+CITIES_CPT="gray"
+CITIES_LABEL_MINPOP=100000
+CITIES_LABEL_FONTSIZE="8p"
+CITIES_LABEL_FONT="Helvetica"
+CITIES_LABEL_FONTCOLOR="black"
+
+################################################################################
+##### Country borders and labels
+
+BORDER_QUALITY="-Da"
+BORDER_LINEWIDTH="0.5p"
+BORDER_LINECOLOR="red"
+
+COUNTRY_LABEL_FONTSIZE="8p"
+COUNTRY_LABEL_FONT="Helvetica"
+COUNTRY_LABEL_FONTCOLOR="red"
+
+################################################################################
+##### Global Curie Depth Map (GCDM)
+GCDMMIN=4                   # Minimum depth of CPT
+GCDMMAX=45                  # Maximum depth of CPT
+
+################################################################################
+##### GPS velocities
+
+GPS_LINEWIDTH="0.25p"
+GPS_LINECOLOR="black"
+GPS_FILLCOLOR="red"
+
+EXTRAGPS_LINEWIDTH="0.25p"
+EXTRAGPS_LINECOLOR="black"
+EXTRAGPS_FILLCOLOR="pink"
+
+GPS_ELLIPSE=0.95             # Confidence ellipse
+GPS_ELLIPSE_MODEL=0          # Use for velocities with no error ellipse
+
+################################################################################
+##### Coastlines and land/sea colors
+COAST_QUALITY="-Da"          # pscoast quality
+COAST_SIZELIMIT=0
+FILLCOASTS=""                # pscoast option for filling land areas
+COAST_LINEWIDTH="0.5p"       # pscoast line width
+COAST_LINECOLOR="black"      # pscoast line color
+
+LAKE_LINEWIDTH="0.2p"
+LAKE_LINECOLOR="black"
+
+RIVER_LINEWIDTH=0.4p
+RIVER_LINECOLOR="blue"
+RIVER_COMMAND=""
+
+COAST_KM2="100"              # minimum size (im km^2) of feature
+LANDCOLOR="gray"             # color of land areas
+SEACOLOR="lightblue"         # color of sea areas
+FILLCOASTS=""                # empty by default = don't fill anything
+BORDER_LINEWIDTH="1.3p"      # National border linewidth
+BORDER_LINECOLOR="red"       # National border linecolor
+
+################################################################################
+##### Plate motions
+AZDIFFSCALE=0.25             # scale of azimuth difference circles
+GRIDSTEP=0.5                 # grid increment
+PLATEARROW_COLOR="orange"    # differential plate motion arrow, fill
+PLATEARROW_TRANS=40          # differential plate motion arrow, transparency
+
+PLATELINE_COLOR="black"      # plate edge color
+PLATELINE_WIDTH="1.0p"       # plate edge width
+PLATELINE_TRANS=30           # plate edge transparency
+
+PLATEMODEL="MORVEL"          # plate motion model
+DEFREF="NNR"                 # default reference plate ID (or NNR/ITRF08/etc)
+PLATEVEC_COLOR="black"       # plate rotation vector, fill
+PLATEVEC_TRANS=10            # plate rotation vector, transparency
+LATSTEPS=0.5                 # colatitude increment for small circles
+PLATELABEL_COLOR="black"     # color of plate label
+PLATELABEL_SIZE="6p"         # size of plate label
+PLATEVELRES="0.05d"          # resolution of plate velocity grid
+PLATEVEC_TEXT_SIZE="5p"      # plate velocity label size
+PLATEVEC_TEXT_COLOR="black"  # plate velocity label color
+PLATEVEC_TEXT_FONT="Helvetica" # plate velocity font
+PLATEVEC_TEXT_PLOT=1         # If 1, plot text, if not, don't
+
+PDIFFCUTOFF=0  # Not sure what this does
+
+##### GRid
+FIB_KM=250                   # Default spacing of Fibonacci spiral grid points
+
+################################################################################
+##### Ocean age raster
+OC_TRANS=0                   # Oceanic crust age transparency
+OC_MAXAGE=200                # Age of oldest crust in CPT
+
+################################################################################
+##### Topography/bathymetry
+BATHYMETRY="SRTM30"          # topo dataset
+TOPOTRANS=0                  # transparency of topography raster
+CONTOUR_INTERVAL=1000        # contour interval
+CONTOUR_LINECOLOR="white"    # contour line color
+CONTOUR_LINEWIDTH="0.2p"     # contour line width
+CONTOUR_MINLEN="100k"        # length of smallest contour plotted
+
+# GDAL DEM options (-gdalt)
+HS_GAMMA=1                   # gamma factor for texture file
+HS_AZ=325
+HS_ALT=40                    # Altitude of sun for multiple hillshade
+HS_VEXAG=1                   # Vertical exaggeration applied to terrain for hillshading
+HS_Z_FACTOR=2.5
+
+# Texture shading options (-tshade)
+TS_FRAC=0.7                 # Texture shader parameter 1
+TS_STRETCH=4                # Texture shader parameter 2, contrast stretch
+
+# Shadowing options (-shadow)
+SUN_EL=10                    # Elevation angle of sun for shadowing
+SUN_AZ=$HS_AZ               # Shadow sun azimuth
+SUN_DARK=20                 # Value above 10 to darken/lighten cast shadows
+
+###
+# Euler pole velocities
+
+EULER_VEC_FILLCOLOR="red"
+EULER_VEC_LINECOLOR="black"
+
+################################################################################
+##### Topographic contours
+TOPOCONTOURNUMDEF=20         # Number of contours to plot
+TOPOCONTOURWIDTH=0.1p
+TOPOCONTOURCOLOUR="black"
+TOPOCONTOURSMOOTH=100
+TOPOCONTOURLABELS="on"
+TOPOCONTOURMINPTS="500"
+
+################################################################################
+##### Seismicity
+ZSFILLCOLOR="white"          # Default fill color for solid fill hypocenters
+EQ_MINMAG=0
+EQ_MAXMAG=10
+EQLINEWIDTH="0.25p"
+EQLINECOLOR="black"
+EQREMOVEFILL="white"
+EQCUTMINDEPTH=-1000          # Ignore seismicity and CMT data above this depth
+EQCUTMAXDEPTH=6000           # Ignore seismicity and CMT data below this depth
+REMOVE_DEFAULTDEPTHS=0       # Should we remove events with D=10,5,33,etc
+REMOVE_DEFAULTDEPTHS_MAXMAG=6     # But don't remove events above a (scaled?) magnitude threshold as they are more important
+REMOVE_DEFAULTDEPTHS_WITHPLOT=1   # Should we plot the removed events separately?
+REMOVE_EQUIVS=1              # Should we remove equivalent earthquakes if CMT exists?
+
+EQMINDEPTH_COLORSCALE=-1      # minimum earthquake color depth
+EQMAXDEPTH_COLORSCALE=80     # maximum earthquake color depth (~transition to blue)
+SEISSIZE="0.05i"             # seismicity scale
+SEISTRANS=0                  # transparency of seismic data
+SCALEEQS=1                   # if 1, use magnitude to scale points in size
+SEISSCALE=1                  # scale multiplying factor taking M -> p
+SEISSYMBOL="c"               # can be any of +-acdghinpstxy
+SEISSTRETCH=3                # exponential factor used to exaggerate size differences
+SEISSTRETCH_REFMAG=6         # earthquakes of this size will not be scaled by sizestretch
+
+# Currently CMTSCALE=0.07 is needed to match the psxy plotting of seismicity?
+
+################################################################################
+##### Focal mechanisms
+PLOTORIGIN=1                 # Plot the origin locations of focal mechanisms. 1 = origin, 0 = centroid
+CMTFORMAT="MomentTensor"     # Choose from GlobalCMT / MomentTensor/ TNP
+CMTEXTRA="-Tn"               # Plot nodal planes on top
+CMTFILE="DefaultNOCMT"
+#CMTFILE=$FOCALCATALOG       # Default CMT database
+CMTSCALE=0.07                # focal mechanism scale (inches)
+PLOTORIGIN=1                 # plot origin locations (=0: plot centroids)
+CMT_MAXDEPTH=1000            # deepest GCMT earthquake considered
+CMT_NORMALCOLOR="white"      # color of normal mechanism p axis
+CMT_SSCOLOR="gray80"         # color of strike slip mechanism p axis
+CMT_THRUSTCOLOR="gray40"     # color of reverse mechanism p axis
+CMT_MINMAG=0                 # Focal mechanism minimum magnitude considered
+CMT_MAXMAG=10                # Focal mechanism maximum magnitude considered
+CMTAXESSTRING="ptn"          # Focal mechanism principal axes type string
+CMTAXESTYPESTRING="nts"      # Focal mechanism principal axes, mechanism type string
+CMTAXESARROW=0.04i           # Focal mechanism principal axes, arrowhead size
+CMTAXESSCALE=0.75            # Focal mechanism principal axes, general scale factor
+T0PEN="0.1p,black"           # Focal mechanism, nodal planes and bubble pen
+FMLPEN="0p,black"            # Focal mechanism line pen, main
+
+################################################################################
+# Earthquake labels
+
+EQ_LABEL_FONTSIZE=10p
+EQ_LABEL_FONT=Helvetica
+EQ_LABEL_FONTCOLOR=black
+EQ_LABEL_JUST="LB"           # Justification of event label (LB, LR, etc)
+EQ_LABEL_DISTX="0.1i"
+EQ_LABEL_DISTY="0.2i"        # Distance of label corner from event center
+EQ_LABELFORMAT="idmag"       # Possible formats: idmag datemag iddate id date mag
+
+EQ_REGION_WIDTH=5            # Width/height of buffer around an EQ used to define the region
+
+################################################################################
+##### LITHO1 cross sections options
+
+LITHO1_TYPE="density"        # Currently only density is supported.
+LITHO1_INC=10                # Spacing interval, units of km.
+LITHO1_LEVEL=7               # Tesselation level to sample (7 is highest available)
+LITHO1_DEPTH=100             # Depth of depth slice for LITHO1, in km
+LITHO1_TRANS=0               # transparency of Litho1 polygons
+
+################################################################################
+##### Globe inset options
+INSET_SIZE="1i"
+INSET_XOFF="0i"
+INSET_YOFF="0i"
+INSET_DEGWIDTH=90
+INSET_AOI_LINECOLOR="red"
+INSET_AOI_LINEWIDTH="1p"
+
+################################################################################
+##### Focal mechanism kinematics
+KINSCALE=0.1                 # scale of kinematic elements
+NP1_COLOR="red"            # nodal plane 1 color, kinematics
+NP2_COLOR="black"            # nodal plane 2 color, kinematics
+RAKE1SCALE=0.25              # length of kinematic vector indicating NP 1 rake
+RAKE2SCALE=0.15              # length of kinematic vector indicating NP 2 rake
+KIN_MINMAG=0.0
+KIN_MAXMAG=10.0
+
+################################################################################
+##### Active faults
+AFLINECOLOR=red             # GEM fault map, line color
+AFLINEWIDTH="0.5p"          # GEM fault map, line width
+
+################################################################################
+##### Geophysical data sets
+GRAVMODEL="BG"               # gravity model
+GRAVTRANS=0.5                # transparency of gravity data
+MAGMODEL="EMAGV2"            # magnetic model
+MAGTRANS=0.5                 # transparency of magnetic model
+
+################################################################################
+##### TDEFNODE model options
+MINCOUPLING=0.2              # cutoff of coupling value to display, TDEFNODE
+SVBIG=0.1i                   # slip vectors, length, large
+SVBIGW="1p"                  # slip vectors, width, large
+SVSMALL=0.05i                # slip vectors, length, small
+SVSMALLW="0.65p"             # slip vectors, width, small
+SMALLRES=0.02i               # residual velocities, scale
+
+TD_OGPS_LINEWIDTH="0.25p"
+TD_OGPS_LINECOLOR="black"
+TD_OGPS_FILLCOLOR="red"
+
+TD_VGPS_LINEWIDTH="0.25p"
+TD_VGPS_LINECOLOR="black"
+TD_VGPS_FILLCOLOR="white"
+
+TD_RGPS_LINEWIDTH="0.25p"
+TD_RGPS_LINECOLOR="black"
+TD_RGPS_FILLCOLOR="green"
+
+##### TDEFNODE FAULT MIDPOINT VECTORS
+
+SLIP_DIST=2                 # Cutoff distance, in degrees lat/lon
+
+SLIP_LINEWIDTH="0.25p"
+SLIP_LINECOLOR="black"
+SLIP_FILLCOLOR="lightbrown"
+
+SLIP_FONTSIZE="5"
+SLIP_FONT="Helvetica"
+SLIP_FONTCOLOR="brown"
+
+################################################################################
+##### Volcanoes
+V_SYMBOL="t"                  # volcano symbol; t=triangle    kvolcano/=volcano
+V_FILL="red"                  # volcano symbol, fill
+V_SIZE="0.075i"               # volcano symbol, size
+V_LINEW="0.3p"                  # volcano symbol, edge line width
+V_LINECOLOR="black"           # volcano symbol, edge line color
+
+################################################################################
+##### GIS data: points
+POINTSYMBOL="c"
+POINTCOLOR="black"
+POINTSIZE="0.02i"
+POINTLINECOLOR="black"
+POINTLINEWIDTH="0.5p"
+POINTCPT=$CPTDIR"defaultpt.cpt"
+
+################################################################################
+### SRCMOD slip distributions
+SLIPMINIMUM=3                # SRCMOD minimum slip that is colored (m)
+SLIPMAXIMUM=25               # SRCMOD maximum slip that is colored (m)
+SLIPCONTOURINTERVAL=2        # SRCMOD contour interval (m)
+
+################################################################################
+### Contoured grids
+CONTOURNUMDEF=20             # Number of contours to plot
+GRIDCONTOURWIDTH=0.1p
+GRIDCONTOURCOLOUR="black"
+GRIDCONTOURSMOOTH=100
+GRIDCONTOURLABELS="on"
+
+################################################################################
+### CMT default catalog
+CENTROIDFLAG=0
+
+CMTTYPE="ORIGIN"    # ORIGIN or CENTROID
+[[ $CMTTYPE =~ "ORIGIN" ]] && ORIGINFLAG=1 && CENTROIDFLAG=0
+[[ $CMTTYPE =~ "CENTROID" ]] && ORIGINFLAG=0 && CENTROIDFLAG=1
