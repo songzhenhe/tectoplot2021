@@ -51,18 +51,6 @@ function tac() {
   tail -r -- "$@";
 }
 
-function tecto_tac() {
-  gawk '{
-    data[NR]=$0
-  }
-  END {
-    num=NR
-    for(i=num;i>=1;i--) {
-      print data[i]
-    }
-  }' "$@"
-}
-
 function epoch_ymdhms() {
   echo "$1 $2 $3 $4 $5 $6" | gawk '{
     the_time=sprintf("%i %i %i %i %i %i",$1,$2,$3,$4,$5,$6);
@@ -358,7 +346,7 @@ if ! [[ $2 =~ "rebuild" ]]; then
   # Get a list of files that should exist but are not marked as complete
   cat isc_complete.txt isc_list.txt | sort -r -n -t "_" -k 3 -k 4 -k 5 | uniq -u > isc_incomplete.txt
 
-  isc_list_files=($(tecto_tac isc_incomplete.txt))
+  isc_list_files=($(tail -r isc_incomplete.txt))
 
   # echo ${isc_list_files[@]}
 
