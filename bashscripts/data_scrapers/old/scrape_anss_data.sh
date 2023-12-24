@@ -45,18 +45,6 @@
 # Example curl command:
 # curl "https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=${year}-${month}-${day}&endtime=${year}-${month}-${day}&minlatitude=-90&maxlatitude=90&minlongitude=-180&maxlongitude=180"
 
-function tecto_tac() {
-  gawk '{
-    data[NR]=$0
-  }
-  END {
-    num=NR
-    for(i=num;i>=1;i--) {
-      print data[i]
-    }
-  }' "$@"
-}
-
 # iso8601 is YYYY-MM-DDTHH:MM:SS = 19 characters
 function lastday_of_month() {
   month=$(printf "%02d" $1)
@@ -290,7 +278,7 @@ if ! [[ $2 =~ "rebuild" ]]; then
   # Get a list of files that should exist but are not marked as complete
   cat anss_complete.txt anss_list.txt | sort -r -n -t "_" -k 3 -k 4 -k 5 | uniq -u > anss_incomplete.txt
 
-  anss_list_files=($(tecto_tac anss_incomplete.txt))
+  anss_list_files=($(tail -r anss_incomplete.txt))
 
   echo ${anss_list_files[@]}
 
