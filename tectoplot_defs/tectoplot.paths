@@ -556,6 +556,13 @@ FAULTS_SHORT_SOURCESTRING="GEM"
 GEMFAULTS=$DATAROOT"GEMActiveFaults/gem-global-active-faults/gmt/gem_active_faults_harmonized.gmt"
 GEMFAULTS_SOURCEURL="https://raw.githubusercontent.com/cossatot/gem-global-active-faults/master/gmt/gem_active_faults_harmonized.gmt"
 
+##### GEM historical earthquakes
+GEMGHECDIR=$DATAROOT"GEM_GHEC/"
+GEMGHEC_DATA=${GEMGHECDIR}GEM_GHEC_v1.cat
+GEMGHEC_SOURCESTRING="GEM Global Historical Earthquake Catalogue, http://www.globalquakemodel.org/"
+GEMGHEC_SHORT_SOURCESTRING="GEM/GHEC"
+
+
 ##### SRCMOD slip distribution folder
 SRCMOD_SOURCESTRING="SRCMOD, http://equake-rc.info/srcmod/"
 SRCMOD_SHORT_SOURCESTRING="SRCMOD"
